@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Home - Empresa de Eventos
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Bem-vindo à Empresa de Eventos!</h1>
+        <p class="lead">Organizamos os melhores eventos para você.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Saiba Mais</a>
+    </div>
+
+    <h2 class="my-4">Próximos Eventos</h2>
+    <div class="row">
+        <!-- Exemplo de evento -->
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Evento 1</h5>
+                    <p class="card-text">Descrição breve do evento.</p>
+                    <p><strong>Data:</strong> 01/04/2025</p>
+                    <p><strong>Local:</strong> São Paulo</p>
+                    <a href="#" class="btn btn-primary">Detalhes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Evento 2</h5>
+                    <p class="card-text">Descrição breve do evento.</p>
+                    <p><strong>Data:</strong> 15/04/2025</p>
+                    <p><strong>Local:</strong> Rio de Janeiro</p>
+                    <a href="#" class="btn btn-primary">Detalhes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Evento 3</h5>
+                    <p class="card-text">Descrição breve do evento.</p>
+                    <p><strong>Data:</strong> 30/04/2025</p>
+                    <p><strong>Local:</strong> Belo Horizonte</p>
+                    <a href="#" class="btn btn-primary">Detalhes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

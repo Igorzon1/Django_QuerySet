@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Lista de Eventos
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="text-center">Lista de Eventos</h2>
+    <div class="row">
+        {% for evento in eventos %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ evento.titulo }}</h5>
+                    <p class="card-text">{{ evento.descricao|truncatechars:100 }}</p>
+                    <p><strong>Data:</strong> {{ evento.data }}</p>
+                    <p><strong>Local:</strong> {{ evento.local }}</p>
+                    <p><strong>Categoria:</strong> {{ evento.categoria.nome }}</p>
+                    <a href="#" class="btn btn-primary">Detalhes</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center">Nenhum evento encontrado.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

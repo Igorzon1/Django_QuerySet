@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 from .models import Categoria, Evento, CustomUser, Inscricao
 
 class CategoriaForm(forms.ModelForm):
@@ -24,12 +25,32 @@ class EventoForm(forms.ModelForm):
             'palestrante': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
+class UserRegistrationForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Senha'}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirme a Senha'}))
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome de Usuário'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+
+        if password != confirm_password:
+            raise forms.ValidationError("As senhas não coincidem.")
+        return cleaned_data
+
 class CustomUserForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['user', 'cpf', 'idade']
+        fields = ['cpf', 'idade']
         widgets = {
-            'user': forms.Select(attrs={'class': 'form-control'}),
             'cpf': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'CPF'}),
             'idade': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Idade'}),
         }

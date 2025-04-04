@@ -14,40 +14,23 @@ Home - Empresa de Eventos
 
     <h2 class="my-4">Próximos Eventos</h2>
     <div class="row">
-        <!-- Exemplo de evento -->
+        {% for evento in eventos %}
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Evento 1</h5>
-                    <p class="card-text">Descrição breve do evento.</p>
-                    <p><strong>Data:</strong> 01/04/2025</p>
-                    <p><strong>Local:</strong> São Paulo</p>
+                    <h5 class="card-title">{{ evento.titulo }}</h5>
+                    <p class="card-text">{{ evento.descricao|truncatechars:100 }}</p>
+                    <p><strong>Data:</strong> {{ evento.data }}</p>
+                    <p><strong>Local:</strong> {{ evento.local }}</p>
                     <a href="#" class="btn btn-primary">Detalhes</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Evento 2</h5>
-                    <p class="card-text">Descrição breve do evento.</p>
-                    <p><strong>Data:</strong> 15/04/2025</p>
-                    <p><strong>Local:</strong> Rio de Janeiro</p>
-                    <a href="#" class="btn btn-primary">Detalhes</a>
-                </div>
-            </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center">Nenhum evento encontrado.</p>
         </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Evento 3</h5>
-                    <p class="card-text">Descrição breve do evento.</p>
-                    <p><strong>Data:</strong> 30/04/2025</p>
-                    <p><strong>Local:</strong> Belo Horizonte</p>
-                    <a href="#" class="btn btn-primary">Detalhes</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

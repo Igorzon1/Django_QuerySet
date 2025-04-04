@@ -29,6 +29,7 @@ class Evento(models.Model):
     capacidade = models.PositiveIntegerField()
     organizador = models.CharField(max_length=100)
     palestrante = models.CharField(max_length=100, blank=True, null=True)
+    ativo = models.BooleanField(default=True)  # Campo para indicar se o evento está ativo ou não
 
     def __str__(self):
         return self.titulo

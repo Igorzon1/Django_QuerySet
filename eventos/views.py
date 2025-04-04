@@ -4,7 +4,9 @@ from .models import Evento, Inscricao, Categoria, CustomUser
 from .forms import EventoForm, InscricaoForm, CategoriaForm, CustomUserForm, UserRegistrationForm
 
 def index(request):
-    return render(request, 'eventos/home_eventos.html')
+    #mostrar os eventos cadastrados
+    eventos = Evento.objects.all()
+    return render(request, 'eventos/home_eventos.html', {'eventos': eventos})
 
 def cadastro_categorias(request):
     if request.method == 'POST':

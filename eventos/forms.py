@@ -13,7 +13,7 @@ class CategoriaForm(forms.ModelForm):
 class EventoForm(forms.ModelForm):
     class Meta:
         model = Evento
-        fields = ['titulo', 'descricao', 'data', 'local', 'categoria', 'capacidade', 'organizador', 'palestrante']
+        fields = ['titulo', 'descricao', 'data', 'local', 'categoria', 'capacidade', 'organizador', 'palestrante','ativo']
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'descricao': forms.Textarea(attrs={'class': 'form-control'}),
@@ -23,6 +23,7 @@ class EventoForm(forms.ModelForm):
             'capacidade': forms.NumberInput(attrs={'class': 'form-control'}),
             'organizador': forms.TextInput(attrs={'class': 'form-control'}),
             'palestrante': forms.TextInput(attrs={'class': 'form-control'}),
+            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
 class UserRegistrationForm(forms.ModelForm):

@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Editar Evento - {{ evento.titulo }}
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="text-center">Editar Evento</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.titulo.label_tag }}
+            {{ form.titulo }}
+        </div>
+        <div class="form-group">
+            {{ form.descricao.label_tag }}
+            {{ form.descricao }}
+        </div>
+        <div class="form-group">
+            {{ form.data.label_tag }}
+            {{ form.data }}
+        </div>
+        <div class="form-group">
+            {{ form.local.label_tag }}
+            {{ form.local }}
+        </div>
+        <div class="form-group">
+            {{ form.categoria.label_tag }}
+            {{ form.categoria }}
+        </div>
+        <div class="form-group">
+            {{ form.capacidade.label_tag }}
+            {{ form.capacidade }}
+        </div>
+        <div class="form-group">
+            {{ form.organizador.label_tag }}
+            {{ form.organizador }}
+        </div>
+        <div class="form-group">
+            {{ form.palestrante.label_tag }}
+            {{ form.palestrante }}
+        </div>
+        <div class="form-check">
+            {{ form.ativo }}
+            {{ form.ativo.label_tag }}
+        </div>
+        <button type="submit" class="btn btn-success mt-3">Salvar Alterações</button>
+        <a href="{% url 'lista_eventos' %}" class="btn btn-secondary mt-3">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

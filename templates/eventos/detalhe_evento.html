@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Detalhes do Evento - {{ evento.titulo }}
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="card-title">{{ evento.titulo }}</h2>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Descrição:</strong> {{ evento.descricao }}</p>
+            <p class="card-text"><strong>Data:</strong> {{ evento.data }}</p>
+            <p class="card-text"><strong>Local:</strong> {{ evento.local }}</p>
+            <p class="card-text"><strong>Categoria:</strong> {{ evento.categoria.nome }}</p>
+            <p class="card-text"><strong>Capacidade:</strong> {{ evento.capacidade }}</p>
+            <p class="card-text"><strong>Organizador:</strong> {{ evento.organizador }}</p>
+            {% if evento.palestrante %}
+            <p class="card-text"><strong>Palestrante:</strong> {{ evento.palestrante }}</p>
+            {% endif %}
+            <p class="card-text"><strong>Status:</strong> 
+                {% if evento.ativo %}
+                <span class="badge bg-success">Ativo</span>
+                {% else %}
+                <span class="badge bg-danger">Inativo</span>
+                {% endif %}
+            </p>
+        </div>
+        <div class="card-footer text-end">
+            <a href="{% url 'editar_evento' evento.id %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'lista_eventos' %}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -13,11 +13,11 @@ class CategoriaForm(forms.ModelForm):
 class EventoForm(forms.ModelForm):
     class Meta:
         model = Evento
-        fields = ['titulo', 'descricao', 'data', 'local', 'categoria', 'capacidade', 'organizador', 'palestrante','ativo']
+        fields = ['titulo', 'descricao', 'data', 'local', 'categoria', 'capacidade', 'organizador', 'palestrante', 'ativo']
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'descricao': forms.Textarea(attrs={'class': 'form-control'}),
-            'data': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'data': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'local': forms.TextInput(attrs={'class': 'form-control'}),
             'categoria': forms.Select(attrs={'class': 'form-control'}),
             'capacidade': forms.NumberInput(attrs={'class': 'form-control'}),
@@ -25,6 +25,11 @@ class EventoForm(forms.ModelForm):
             'palestrante': forms.TextInput(attrs={'class': 'form-control'}),
             'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'data' in self.fields:
+            self.fields['data'].widget.attrs['value'] = self.initial.get('data', '').strftime('%Y-%m-%d') if self.initial.get('data') else ''
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Senha'}))

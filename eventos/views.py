@@ -28,6 +28,21 @@ def cadastro_eventos(request):
         form = EventoForm()
     return render(request, 'eventos/cadastro_eventos.html', {'form': form})
 
+def editar_evento(request, evento_id):
+    evento = Evento.objects.get(pk=evento_id)
+    if request.method == 'POST':
+        form = EventoForm(request.POST, instance=evento)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = EventoForm(instance=evento)
+    return render(request, 'eventos/edit_evento.html', {'form': form, 'evento': evento})
+
+def detalhe_evento(request, evento_id):
+    evento = Evento.objects.get(pk=evento_id)
+    return render(request, 'eventos/detalhe_evento.html', {'evento': evento})
+
 def cadastro_usuario(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)

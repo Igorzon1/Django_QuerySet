@@ -17,7 +17,7 @@ Lista de Eventos
                     <p><strong>Data:</strong> {{ evento.data }}</p>
                     <p><strong>Local:</strong> {{ evento.local }}</p>
                     <p><strong>Categoria:</strong> {{ evento.categoria.nome }}</p>
-                    <a href="#" class="btn btn-primary">Detalhes</a>
+                    <a href="{% url 'detalhe_evento' evento.id %}" class="btn btn-primary">Detalhes</a>
                 </div>
             </div>
         </div>

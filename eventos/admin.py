@@ -21,3 +21,8 @@ class InscricaoAdmin(admin.ModelAdmin):
     list_display = ('evento', 'user', 'compareceu')
     list_filter = ('compareceu',)
     search_fields = ('evento__titulo', 'user__user__username')  # Pesquisa por título do evento e nome do usuário
+
+@admin.register(CustomUser)
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = ('user', 'cpf', 'cpf', 'idade')
+    search_fields = ('user__username', 'cpf', 'telefone')
